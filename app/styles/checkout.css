@@ -1,0 +1,64 @@
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  width: 100%;
+}
+
+.backColor {
+  background-color: #FAFAFA;
+}
+
+.maincontainer {
+  background-color: #EEEEEE;
+  height: 125vh;
+  width: 70%;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+.checkoutText {
+  background-color: #FFFFFF;
+  height: 15vh;
+}
+
+.items {
+  background-color: #FFFFFF;
+  height: 15vh;
+  width: 50%;
+  margin-top: 4%;
+  margin-left: 10%;
+
+}
+
+.shippingInfo {
+  background-color: #FFFFFF;
+  height: 35vh;
+  width: 50%;
+  margin-top: 2%;
+  margin-left: 10%;
+
+}
+
+.paymentInfo {
+  background-color: #FFFFFF;
+  height: 45vh;
+  width: 50%;
+  margin-top: 2%;
+  margin-left: 10%;
+}
+
+.cardInfo {
+  height: 6vh;
+}
+
+.promoCode {
+  height: 6vh;
+  width: 75%;
+  margin-left: 10%;
+}
+
+.promoInput {
+  width: 60%;
+}
