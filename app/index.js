@@ -1,15 +1,17 @@
 import React from 'react';
 import reactDOM from 'react-dom';
-// import Routes from './config/routes';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import Main from './components/Main';
 import Home from './components/Home';
 import PreCheckout from './components/PreCheckout';
 import Checkout from './components/Checkout';
-import './styles/materialize.css';
 import * as $ from 'jquery';
 import hammerjs from 'hammerjs';
-import './shared/materialize';
+import './styles/main.css';
+import './styles/checkout.css';
+import './styles/preCheck.css';
+import './components/Product/Product.css';
+// require("./stylesheet.css");
 
 reactDOM.render(
   (

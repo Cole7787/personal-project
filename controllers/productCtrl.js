@@ -1,8 +1,5 @@
-const massive = require('massive');
-
-const db = massive.connectSync({
-  connectionString: 'postgres://postgres:@localhost/personal_project'
-})
+const app = require('../server.js');
+const db = app.get('db');
 
 module.exports = {
   index: (req, res)=>{

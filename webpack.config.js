@@ -5,6 +5,7 @@ var HtmlWebpackPulginConfig = new HtmlWebpackPulgin({
   inject: 'body'
 });
 
+
 const webpack = require('webpack')
 const jQuery = new webpack.ProvidePlugin({
   jquery:'jquery',
@@ -18,15 +19,15 @@ module.exports = {
   ],
 
   output: {
-    path: __dirname + '/dist',
+    path: './app/dist',
     filename: "index_bundle.js"
   },
 
   module: {
     loaders: [
       {test: /\.js$/, exclude: /node_modules/, loader: "babel-loader"},
-      {test: /\.css$/, loader: "style-loader!css-loader"},
-      {test: /\.woff$|\.eot$|\.ttf$|\.woff2$/, loader: "file-loader"}
+      {test: /\.css$/, loader: "style-loader!css-loader"}
+      // {test: /\.woff$|\.eot$|\.ttf$|\.woff2$/, loader: "file-loader"}
     ]
   },
   plugins: [HtmlWebpackPulginConfig,jQuery],

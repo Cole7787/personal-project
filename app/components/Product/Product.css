@@ -1,8 +1,16 @@
 .product {
-  background: url("https://lh3.googleusercontent.com/WgEq1QwTbGaUHiIxoElQhp5uvYVR5tLAXlfza4IV9TLZULA0Ti1zxN0tsCBWd_F3vEw=rw") center no-repeat;
   background-color: #EEEEEE;
+  background-repeat: no-repeat;
   margin-left: 15%;
   margin-right: 15%;
   height:100vh;
   width: 70%;
+}
+
+@media only screen and (max-width: 500px){
+  .product {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
 }

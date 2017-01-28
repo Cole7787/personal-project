@@ -1,31 +1,48 @@
 import React from 'react';
 import {Link} from 'react-router';
-var MainContainer = require('./MainContainer.js');
 import Product from './Product/Product';
 import '../styles/main.css';
+import axios from 'axios';
 
 
 class Home extends React.Component{
 
-  // constructor(props){
-  //   super(props);
-  //   // this.data = axios.get('/myproducts]');
-  //
-  //   this.data = [{name:'hi',price:300}]
-  //
-  // }
-  // renderProducts = ()=>{
-  //   return this.data.map(datum => {
-  //     return (<Product name={datum.name}/>)
-  //   });
-  // }
+  constructor(props){
+    super(props);
+      this.state = {
+        products: ''
+      }
+  }
+  componentDidMount(){
+    console.log('com mointed');
+    axios.get('/api/product')
+    .then(response => {
+      console.log(response);
+      this.setState({
+        products: response.data
+      })
+    })
+  }
+
+  renderProducts(){
+    if(this.state.products){
+      return this.state.products.map((product, i) => {
+        return (<Product key={i}
+          name={product.name}
+          description={product.description}
+          price={product.price}
+          image={product.imageurl} />)
+      });
+    }
+
+  }
   render(){
     return (
         <div className="main">
-          <Product/>
+          {this.renderProducts()}
         </div>
     )
   }
 };
 
-module.exports = Home;
+export default Home;

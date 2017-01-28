@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router';
 import '../styles/preCheck.css';
 import {Button} from 'react-materialize';
+import './Product/Product';
 
 class PreCheckout extends React.Component{
   render(){
@@ -10,9 +11,9 @@ class PreCheckout extends React.Component{
       <div className="maincontain">
         <div className="yourcart">Your cart</div>
         <div className="productbox">
-          <div className="productImg">Img</div>
-          <div className="productTitle">Title</div>
-          <div className="productPrice">Price</div>
+          <div className="productImg">{product.image}</div>
+          <div className="productTitle">{product.name}</div>
+          <div className="productPrice">{this.props.price}</div>
           <div className="quantity">Quantity</div>
           <div className="trash">Trash</div>
         </div>
