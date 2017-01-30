@@ -39,7 +39,7 @@ const item_control = require('./controllers/cart_itemCtrl.js');
 
 
 app.get('/api/product', product_control.index);
-app.get('/api/cart/:productId', cart_control.show);
+app.get('/api/cart/:cartId', cart_control.show);
 app.post('/api/cart', cart_control.create, item_control.create);
 app.put('/api/cart/:productId', item_control.update);
 app.delete('/api/cart/:productId', item_control.destroy);

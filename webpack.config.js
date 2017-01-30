@@ -31,5 +31,8 @@ module.exports = {
     ]
   },
   plugins: [HtmlWebpackPulginConfig,jQuery],
-  resolve:["",".js"]
+  resolve:["",".js"],
+  externals:{
+    jquery:'jQuery'
+  }
 }

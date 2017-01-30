@@ -4,7 +4,7 @@ const db = app.get('db');
 
 module.exports = {
   show: (req, res)=>{
-    db.read_product([req.params.productId], (err, result)=>{
+    db.get_cart_item([req.params.cartId], (err, result)=>{
       if(err){
         console.log(err);
       }
@@ -35,7 +35,7 @@ module.exports = {
   },
 
   destroy: (req, res)=>{
-    db.delete_product([req.params.productId], (err, result)=>{
+    db.delete_product([req.params.cartId], (err, result)=>{
       if(err){
         console.log(err);
       }

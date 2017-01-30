@@ -5,12 +5,15 @@ module.exports = {
   create: (req, res)=>{
     console.log(req.body);
     const { cartId, productId, quantity } = req.body;
-    db.create_item([productId, quantity, cartId], (err)=>{
+    console.log();
+    db.create_item([productId, quantity, cartId[0].id], (err)=>{
       if(err){
         console.log(err);
+        res.reject(err);
+        return;
       }
       else{
-        db.get_cart_items([cartId], (err, result)=>{
+        db.get_cart_items([cartId[0].id], (err, result)=>{
           if(err){
             console.log(err);
           }

@@ -10,11 +10,10 @@ class Home extends React.Component{
   constructor(props){
     super(props);
       this.state = {
-        products: ''
+        products: []
       }
   }
   componentDidMount(){
-    console.log('com mointed');
     axios.get('/api/product')
     .then(response => {
       console.log(response);
@@ -26,16 +25,20 @@ class Home extends React.Component{
 
   renderProducts(){
     if(this.state.products){
-      return this.state.products.map((product, i) => {
-        return (<Product key={i}
+      return this.state.products.map((product) => {
+        return (<Product key={product.id}
           name={product.name}
           description={product.description}
           price={product.price}
-          image={product.imageurl} />)
+          image={product.imageurl}
+          update={this.props.updateCartID}
+          cartId={this.props.cartId}
+          productId={product.id}/>)
       });
     }
 
   }
+
   render(){
     return (
         <div className="main">
