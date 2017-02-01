@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+
+.maincontain {
+  background-color: #EEEEEE;
+  height: 100%;
+  min-height:100vh;
+  width: 70%;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+.yourcart {
+  background-color: #FFFFFF;
+  height: 15vh;
+  font-family: 'Roboto', sans-serif;
+  font-size: 30px;
+  margin-top: 1.5px;
+  text-indent: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.productbox {
+  background-color: #FFFFFF;
+  height: 18vh;
+  width: 75%;
+  margin-top: 4%;
+  margin-left: 12.5%;
+  margin-right: 12.5%;
+
+}
+
+.productImg {
+  width: 125px;
+}
+
+.productTitle {
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.productPrice,
+.quantity,
+.trash {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-right: 30px;
+  margin-bottom: 20px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.productPrice {
+  font-size: 15px;
+  height: 2vh;
+}
+
+.quantity {
+  font-size: 13px;
+  height: 2vh;
+}
+
+.trash {
+  height: 3vh;
+}
+
+.trash:hover {
+ cursor: pointer;
+
+}
+
+
+.line {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  width: 75%;
+  margin-top: 6%;
+  margin-left: 12.5%;
+  margin-right: 12.5%;
+}
+
+.subtotal {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.tax {
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  text-indent: 74px;
+}
+
+
+.checkout {
+  text-align: center;
+  height: 9vh !important;
+  width: 80%;
+  background-color: #2979FF !important;
+  margin-top: 5%;
+  margin-left: 10%;
+  margin-right: 10%;
+}

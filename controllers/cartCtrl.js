@@ -4,7 +4,7 @@ const db = app.get('db');
 
 module.exports = {
   show: (req, res)=>{
-    db.get_cart_item([req.params.cartId], (err, result)=>{
+    db.get_cart_items([req.params.cartId], (err, result)=>{
       if(err){
         console.log(err);
       }

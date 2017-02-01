@@ -67,7 +67,7 @@
 
 	var _Main2 = _interopRequireDefault(_Main);
 
-	var _Home = __webpack_require__(282);
+	var _Home = __webpack_require__(286);
 
 	var _Home2 = _interopRequireDefault(_Home);
 
@@ -75,7 +75,7 @@
 
 	var _PreCheckout2 = _interopRequireDefault(_PreCheckout);
 
-	var _Checkout = __webpack_require__(314);
+	var _Checkout = __webpack_require__(317);
 
 	var _Checkout2 = _interopRequireDefault(_Checkout);
 
@@ -83,17 +83,17 @@
 
 	var $ = _interopRequireWildcard(_jquery);
 
-	var _hammerjs = __webpack_require__(317);
+	var _hammerjs = __webpack_require__(319);
 
 	var _hammerjs2 = _interopRequireDefault(_hammerjs);
 
-	__webpack_require__(284);
-
-	__webpack_require__(315);
-
-	__webpack_require__(318);
+	__webpack_require__(282);
 
 	__webpack_require__(320);
+
+	__webpack_require__(314);
+
+	__webpack_require__(322);
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -26599,6 +26599,8 @@
 
 	var _Nav2 = _interopRequireDefault(_Nav);
 
+	__webpack_require__(282);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -26630,9 +26632,10 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      console.log(this.state);
 	      return _react2.default.createElement(
 	        'div',
-	        null,
+	        { className: 'main' },
 	        _react2.default.createElement(_Nav2.default, null),
 	        _react2.default.cloneElement(this.props.children, { updateCartID: this.updateCartID.bind(this), cartId: this.state.cartId })
 	      );
@@ -26643,7 +26646,6 @@
 	}(_react2.default.Component);
 
 	exports.default = Main;
-	// {this.renderProducts()}
 
 /***/ },
 /* 235 */
@@ -31197,202 +31199,13 @@
 /* 282 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactRouter = __webpack_require__(179);
-
-	var _Product = __webpack_require__(283);
-
-	var _Product2 = _interopRequireDefault(_Product);
-
-	__webpack_require__(284);
-
-	var _axios = __webpack_require__(288);
-
-	var _axios2 = _interopRequireDefault(_axios);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Home = function (_React$Component) {
-	  _inherits(Home, _React$Component);
-
-	  function Home(props) {
-	    _classCallCheck(this, Home);
-
-	    var _this = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this, props));
-
-	    _this.state = {
-	      products: []
-	    };
-	    return _this;
-	  }
-
-	  _createClass(Home, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      var _this2 = this;
-
-	      _axios2.default.get('/api/product').then(function (response) {
-	        console.log(response);
-	        _this2.setState({
-	          products: response.data
-	        });
-	      });
-	    }
-	  }, {
-	    key: 'renderProducts',
-	    value: function renderProducts() {
-	      var _this3 = this;
-
-	      if (this.state.products) {
-	        return this.state.products.map(function (product) {
-	          return _react2.default.createElement(_Product2.default, { key: product.id,
-	            name: product.name,
-	            description: product.description,
-	            price: product.price,
-	            image: product.imageurl,
-	            update: _this3.props.updateCartID,
-	            cartId: _this3.props.cartId,
-	            productId: product.id });
-	        });
-	      }
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'main' },
-	        this.renderProducts()
-	      );
-	    }
-	  }]);
-
-	  return Home;
-	}(_react2.default.Component);
-
-	;
-
-	exports.default = Home;
-
-/***/ },
-/* 283 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactRouter = __webpack_require__(179);
-
-	var _axios = __webpack_require__(288);
-
-	var _axios2 = _interopRequireDefault(_axios);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Product = function (_React$Component) {
-	  _inherits(Product, _React$Component);
-
-	  function Product(props) {
-	    _classCallCheck(this, Product);
-
-	    var _this = _possibleConstructorReturn(this, (Product.__proto__ || Object.getPrototypeOf(Product)).call(this, props));
-
-	    _this.addToCart = _this.addToCart.bind(_this);
-	    return _this;
-	  }
-
-	  _createClass(Product, [{
-	    key: 'addToCart',
-	    value: function addToCart() {
-	      var _this2 = this;
-
-	      _axios2.default.post('/api/cart', { cartId: this.props.cartId, productId: this.props.productId, quantity: 1 }).then(function (result) {
-	        console.log(result);
-	        _this2.props.update(result.data[0].cart);
-	        _reactRouter.browserHistory.push('precheck');
-	      });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'product', style: {
-	            background: 'url(' + this.props.image + ') no-repeat center #eeeeee'
-	          } },
-	        _react2.default.createElement(
-	          'div',
-	          null,
-	          this.props.name
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          null,
-	          this.props.description
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          null,
-	          '$',
-	          this.props.price
-	        ),
-	        _react2.default.createElement(
-	          'button',
-	          { onClick: this.addToCart },
-	          'Add To Cart'
-	        )
-	      );
-	    }
-	  }]);
-
-	  return Product;
-	}(_react2.default.Component);
-
-	exports.default = Product;
-
-/***/ },
-/* 284 */
-/***/ function(module, exports, __webpack_require__) {
-
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(285);
+	var content = __webpack_require__(283);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(287)(content, {});
+	var update = __webpack_require__(285)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -31409,21 +31222,21 @@
 	}
 
 /***/ },
-/* 285 */
+/* 283 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(286)();
+	exports = module.exports = __webpack_require__(284)();
 	// imports
 
 
 	// module
-	exports.push([module.id, ".main {\n  background-color: #FAFAFA\n}\n", ""]);
+	exports.push([module.id, ".main {\n  background-color: #FAFAFA\n}\nhtml, body{\n  box-sizing: border-box;\n}\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 286 */
+/* 284 */
 /***/ function(module, exports) {
 
 	/*
@@ -31479,7 +31292,7 @@
 
 
 /***/ },
-/* 287 */
+/* 285 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -31729,6 +31542,196 @@
 			URL.revokeObjectURL(oldSrc);
 	}
 
+
+/***/ },
+/* 286 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(179);
+
+	var _Product = __webpack_require__(287);
+
+	var _Product2 = _interopRequireDefault(_Product);
+
+	__webpack_require__(282);
+
+	var _axios = __webpack_require__(288);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Home = function (_React$Component) {
+	  _inherits(Home, _React$Component);
+
+	  function Home(props) {
+	    _classCallCheck(this, Home);
+
+	    var _this = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this, props));
+
+	    _this.state = {
+	      products: []
+	    };
+	    return _this;
+	  }
+
+	  _createClass(Home, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _this2 = this;
+
+	      _axios2.default.get('/api/product').then(function (response) {
+	        console.log(response);
+	        _this2.setState({
+	          products: response.data
+	        });
+	      });
+	    }
+	  }, {
+	    key: 'renderProducts',
+	    value: function renderProducts() {
+	      var _this3 = this;
+
+	      if (this.state.products) {
+	        return this.state.products.map(function (product) {
+	          return _react2.default.createElement(_Product2.default, { key: product.id,
+	            name: product.name,
+	            description: product.description,
+	            price: product.price,
+	            image: product.imageurl,
+	            update: _this3.props.updateCartID,
+	            cartId: _this3.props.cartId,
+	            productId: product.id });
+	        });
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'main' },
+	        this.renderProducts()
+	      );
+	    }
+	  }]);
+
+	  return Home;
+	}(_react2.default.Component);
+
+	;
+
+	exports.default = Home;
+
+/***/ },
+/* 287 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(179);
+
+	var _axios = __webpack_require__(288);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	var _reactMaterialize = __webpack_require__(236);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Product = function (_React$Component) {
+	  _inherits(Product, _React$Component);
+
+	  function Product(props) {
+	    _classCallCheck(this, Product);
+
+	    var _this = _possibleConstructorReturn(this, (Product.__proto__ || Object.getPrototypeOf(Product)).call(this, props));
+
+	    _this.addToCart = _this.addToCart.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(Product, [{
+	    key: 'addToCart',
+	    value: function addToCart() {
+	      var _this2 = this;
+
+	      _axios2.default.post('/api/cart', { cartId: this.props.cartId, productId: this.props.productId, quantity: 1 }).then(function (result) {
+	        _this2.props.update(result.data[0].cartid);
+	        _reactRouter.browserHistory.push('precheck');
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'product', style: {
+	            background: 'url(' + this.props.image + ') no-repeat center #eeeeee'
+	          } },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'homeName' },
+	          this.props.name
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'homeDescription' },
+	          this.props.description
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'homePrice' },
+	          '$',
+	          this.props.price
+	        ),
+	        _react2.default.createElement(
+	          _reactMaterialize.Button,
+	          { className: 'homeButton', onClick: this.addToCart },
+	          'Add To Cart'
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Product;
+	}(_react2.default.Component);
+
+	exports.default = Product;
 
 /***/ },
 /* 288 */
@@ -33237,17 +33240,19 @@
 
 	var _reactRouter = __webpack_require__(179);
 
-	__webpack_require__(318);
+	__webpack_require__(314);
 
 	var _reactMaterialize = __webpack_require__(236);
 
-	__webpack_require__(283);
+	__webpack_require__(287);
 
 	var _axios = __webpack_require__(288);
 
 	var _axios2 = _interopRequireDefault(_axios);
 
-	__webpack_require__(322);
+	var _CartItem = __webpack_require__(316);
+
+	var _CartItem2 = _interopRequireDefault(_CartItem);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -33266,30 +33271,44 @@
 	    var _this = _possibleConstructorReturn(this, (PreCheckout.__proto__ || Object.getPrototypeOf(PreCheckout)).call(this, props));
 
 	    _this.state = {
-	      cartItem: []
+	      items: [],
+	      subtotal: 0
 	    };
-	    console.log(_this.props);
+	    console.log('the props', _this.props);
 	    return _this;
 	  }
 
 	  _createClass(PreCheckout, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      // axios.get(`/api/cart/${this.props.cartId}`)
-	      // .then(response =>{
-	      //   this.setState({
-	      //   cartItem: response.data
-	      //   })
-	      // })
+	      var _this2 = this;
+
+	      _axios2.default.get('/api/cart/' + this.props.cartId).then(function (response) {
+	        console.log('b', response.data);
+	        var subtotal = response.data.reduce(function (a, b) {
+	          console.log(a, b);
+	          return a + b.price;
+	        }, 0);
+	        console.log(subtotal);
+	        _this2.setState({
+	          items: response.data,
+	          subtotal: subtotal
+	        });
+	      });
 	    }
 	  }, {
 	    key: 'renderCartItem',
 	    value: function renderCartItem() {
-	      if (this.state.cartItem) {
-	        return this.state.cartItem.map(function (cartItem) {
-	          return _react2.default.createElement(CartItem, {
-	            key: cartItem.cartId,
-	            quantity: cartItem.quantity });
+	      console.log('cartItem', this.state.cartItem);
+	      if (this.state.items.length) {
+	        return this.state.items.map(function (val, index) {
+	          console.log('testing');
+	          return _react2.default.createElement(_CartItem2.default, {
+	            key: index,
+	            image: val.imageurl,
+	            name: val.name,
+	            price: val.price,
+	            quantity: val.quantity });
 	        });
 	      }
 	    }
@@ -33298,69 +33317,49 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'outColor' },
-	        '// ',
-	        this.props.cartId,
+	        { className: 'maincontain' },
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'maincontain' },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'yourcart' },
-	            'Your cart'
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'productbox' },
-	            _react2.default.createElement('div', { className: 'productImg' }),
-	            _react2.default.createElement('div', { className: 'productTitle' }),
-	            _react2.default.createElement('div', { className: 'productPrice' }),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'quantity' },
-	              'Quantity'
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'trash' },
-	              'Trash'
-	            )
-	          ),
-	          this.renderCartItem(),
-	          _react2.default.createElement('hr', { className: 'line' }),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'subtotal' },
-	            _react2.default.createElement(
-	              'h6',
-	              null,
-	              'Subtotal'
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'subtotalAmount' },
-	              'Real subtotal'
-	            )
-	          ),
-	          _react2.default.createElement('br', null),
+	          { className: 'yourcart' },
+	          'Your cart'
+	        ),
+	        this.renderCartItem(),
+	        _react2.default.createElement('hr', { className: 'line' }),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'subtotal' },
 	          _react2.default.createElement(
 	            'h6',
 	            null,
-	            'Tax and shipping will be calculated at checkout.'
+	            'Subtotal'
 	          ),
 	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { to: 'checkout' },
+	            'div',
+	            { className: 'subtotalAmount' },
+	            '$',
+	            this.state.subtotal,
+	            '.00'
+	          )
+	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'tax' },
+	          'Tax and shipping will be calculated at checkout.'
+	        ),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: 'checkout' },
+	          _react2.default.createElement(
+	            _reactMaterialize.Button,
+	            { waves: 'light', className: 'checkout' },
 	            _react2.default.createElement(
-	              _reactMaterialize.Button,
-	              { waves: 'light', className: 'checkout' },
-	              _react2.default.createElement(
-	                'i',
-	                { className: 'material-icons' },
-	                'shopping_cart'
-	              ),
-	              'Check out'
-	            )
+	              'i',
+	              { className: 'material-icons' },
+	              'shopping_cart'
+	            ),
+	            ' ',
+	            'Check out'
 	          )
 	        )
 	      );
@@ -33378,6 +33377,46 @@
 /* 314 */
 /***/ function(module, exports, __webpack_require__) {
 
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(315);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(285)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./cartItem.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./cartItem.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 315 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(284)();
+	// imports
+	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Roboto);", ""]);
+
+	// module
+	exports.push([module.id, ".maincontain {\n  background-color: #EEEEEE;\n  height: 100%;\n  min-height:100vh;\n  width: 70%;\n  margin-left: 15%;\n  margin-right: 15%;\n}\n\n.yourcart {\n  background-color: #FFFFFF;\n  height: 15vh;\n  font-family: 'Roboto', sans-serif;\n  font-size: 30px;\n  margin-top: 1.5px;\n  text-indent: 80px;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: flex-start;\n}\n\n.productbox {\n  background-color: #FFFFFF;\n  height: 18vh;\n  width: 75%;\n  margin-top: 4%;\n  margin-left: 12.5%;\n  margin-right: 12.5%;\n\n}\n\n.productImg {\n  width: 125px;\n}\n\n.productTitle {\n  font-family: 'Roboto', sans-serif;\n  font-size: 20px;\n\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n\n.productPrice,\n.quantity,\n.trash {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  align-items: flex-end;\n  margin-right: 30px;\n  margin-bottom: 20px;\n  font-family: 'Roboto', sans-serif;\n}\n\n.productPrice {\n  font-size: 15px;\n  height: 2vh;\n}\n\n.quantity {\n  font-size: 13px;\n  height: 2vh;\n}\n\n.trash {\n  height: 3vh;\n}\n\n.trash:hover {\n cursor: pointer;\n\n}\n\n\n.line {\n  display: block;\n  height: 1px;\n  border: 0;\n  border-top: 1px solid #ccc;\n  width: 75%;\n  margin-top: 6%;\n  margin-left: 12.5%;\n  margin-right: 12.5%;\n}\n\n.subtotal {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  align-items: center;\n}\n\n.tax {\n  font-family: 'Roboto', sans-serif;\n  font-size: 15px;\n  text-indent: 74px;\n}\n\n\n.checkout {\n  text-align: center;\n  height: 9vh !important;\n  width: 80%;\n  background-color: #2979FF !important;\n  margin-top: 5%;\n  margin-left: 10%;\n  margin-right: 10%;\n}\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 316 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
@@ -33392,9 +33431,107 @@
 
 	var _reactRouter = __webpack_require__(179);
 
-	__webpack_require__(315);
+	__webpack_require__(314);
 
 	var _reactMaterialize = __webpack_require__(236);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var CartItem = function (_React$Component) {
+	  _inherits(CartItem, _React$Component);
+
+	  function CartItem() {
+	    _classCallCheck(this, CartItem);
+
+	    return _possibleConstructorReturn(this, (CartItem.__proto__ || Object.getPrototypeOf(CartItem)).apply(this, arguments));
+	  }
+
+	  _createClass(CartItem, [{
+	    key: 'render',
+
+	    // constructor(props){
+	    //   super(props);
+	    // }
+
+	    value: function render() {
+	      console.log('this is the image', this.props.image);
+	      return _react2.default.createElement(
+	        'div',
+	        { className: '' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'productbox' },
+	          _react2.default.createElement('img', { className: 'productImg', src: this.props.image }),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'productTitle' },
+	            this.props.name
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'productPrice' },
+	            '$',
+	            this.props.price,
+	            '.00'
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'quantity' },
+	            'Quantity: ',
+	            this.props.quantity
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'trash' },
+	            _react2.default.createElement(
+	              'i',
+	              { className: 'material-icons' },
+	              'delete'
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return CartItem;
+	}(_react2.default.Component);
+
+	exports.default = CartItem;
+
+/***/ },
+/* 317 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(179);
+
+	var _ItemCheckout = __webpack_require__(318);
+
+	var _ItemCheckout2 = _interopRequireDefault(_ItemCheckout);
+
+	var _reactMaterialize = __webpack_require__(236);
+
+	var _axios = __webpack_require__(288);
+
+	var _axios2 = _interopRequireDefault(_axios);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -33407,133 +33544,89 @@
 	var Checkout = function (_React$Component) {
 	  _inherits(Checkout, _React$Component);
 
-	  function Checkout() {
+	  function Checkout(props) {
 	    _classCallCheck(this, Checkout);
 
-	    return _possibleConstructorReturn(this, (Checkout.__proto__ || Object.getPrototypeOf(Checkout)).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, (Checkout.__proto__ || Object.getPrototypeOf(Checkout)).call(this, props));
+
+	    _this.state = {
+	      items: [],
+	      subtotal: 0
+	    };
+	    return _this;
 	  }
 
 	  _createClass(Checkout, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _this2 = this;
+
+	      _axios2.default.get('/api/cart/' + this.props.cartId).then(function (response) {
+	        var subtotal = response.data.reduce(function (a, b) {
+	          return a + b.price;
+	        }, 0);
+	        _this2.setState({
+	          items: response.data,
+	          subtotal: subtotal
+	        });
+	      });
+	    }
+	  }, {
+	    key: 'renderCheckoutItem',
+	    value: function renderCheckoutItem() {
+	      if (this.state.items.length) {
+	        return this.state.items.map(function (val, index) {
+	          return _react2.default.createElement(_ItemCheckout2.default, {
+	            key: index,
+	            name: val.name,
+	            price: val.price,
+	            quantity: val.quantity });
+	        });
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'backColor' },
+	        { className: 'maincontain' },
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'maincontainer' },
+	          { className: 'checkoutText' },
+	          'Checkout'
+	        ),
+	        this.renderCheckoutItem(),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'paymentInfo' },
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'checkoutText' },
-	            'Checkout'
+	            { className: 'cardInfo' },
+	            'Visa ***5555'
+	          ),
+	          _react2.default.createElement('hr', { className: 'firstLine' }),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'promoCode' },
+	            _react2.default.createElement(
+	              'i',
+	              { className: 'material-icons' },
+	              'local_offer'
+	            ),
+	            _react2.default.createElement('input', { className: 'promoInput', placeholder: 'Add a promo code' })
+	          ),
+	          _react2.default.createElement('hr', { className: 'secondLine' }),
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            'Total Price: $',
+	            this.state.subtotal,
+	            '.00'
 	          ),
 	          _react2.default.createElement(
-	            'div',
-	            { className: 'items' },
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'checkImg' },
-	              'Img'
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'checkTitle' },
-	              'Title'
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'checkPrice' },
-	              'Price'
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'checkQuantity' },
-	              'Quantity'
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'checkTrash' },
-	              'Trash Icon'
-	            )
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'shippingInfo' },
-	            _react2.default.createElement(
-	              'h6',
-	              null,
-	              'Choose shipping address'
-	            ),
-	            _react2.default.createElement('div', { className: 'shippingAddress' }),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'addNewAddress' },
-	              _react2.default.createElement(
-	                'h6',
-	                null,
-	                'Add shipping address'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'shippingMethod' },
-	              _react2.default.createElement(
-	                'h6',
-	                null,
-	                'Standard \'$0.00\''
-	              ),
-	              _react2.default.createElement(
-	                'h6',
-	                null,
-	                'Estimated delivery: January 31 - February 2, 2017'
-	              )
-	            )
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'paymentInfo' },
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'cardInfo' },
-	              'Visa ***5555'
-	            ),
-	            _react2.default.createElement('hr', { className: 'firstLine' }),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'promoCode' },
-	              _react2.default.createElement('input', { className: 'promoInput', placeholder: 'Add a promo code' })
-	            ),
-	            _react2.default.createElement('hr', { className: 'secondLine' }),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'itemSubtotal' },
-	              'Subtotal'
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'shipPrice' },
-	              'Shipping Price'
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'tax' },
-	              'Tax'
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'totalPrice' },
-	              'Total Price'
-	            ),
-	            _react2.default.createElement(
-	              'h6',
-	              null,
-	              'By clicking \'Confirm Purchase\''
-	            ),
-	            _react2.default.createElement(
-	              _reactMaterialize.Button,
-	              { waves: 'light', className: 'confirmPurchase' },
-	              'Confirm Purchase'
-	            )
+	            _reactMaterialize.Button,
+	            { waves: 'light', className: 'confirmPurchase' },
+	            'Confirm Purchase'
 	          )
 	        )
 	      );
@@ -33548,47 +33641,116 @@
 	exports.default = Checkout;
 
 /***/ },
-/* 315 */
+/* 318 */
 /***/ function(module, exports, __webpack_require__) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
+	'use strict';
 
-	// load the styles
-	var content = __webpack_require__(316);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(287)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./checkout.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./checkout.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(179);
+
+	__webpack_require__(320);
+
+	var _reactMaterialize = __webpack_require__(236);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ItemCheckout = function (_React$Component) {
+	  _inherits(ItemCheckout, _React$Component);
+
+	  function ItemCheckout() {
+	    _classCallCheck(this, ItemCheckout);
+
+	    return _possibleConstructorReturn(this, (ItemCheckout.__proto__ || Object.getPrototypeOf(ItemCheckout)).apply(this, arguments));
+	  }
+
+	  _createClass(ItemCheckout, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: '' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'items' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'checkImg' },
+	            this.props.imageurl
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'checkTitle' },
+	            this.props.name
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'checkPrice' },
+	            'Price: $',
+	            this.props.price,
+	            '.00'
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'checkQuantity' },
+	            'Quantity: ',
+	            this.props.quantity
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'checkTrash' },
+	            _react2.default.createElement(
+	              'i',
+	              { className: 'material-icons' },
+	              'delete'
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'shippingInfo' },
+	          _react2.default.createElement(
+	            'h6',
+	            null,
+	            'Choose shipping address'
+	          ),
+	          _react2.default.createElement('div', { className: 'shippingAddress' }),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'shippingMethod' },
+	            _react2.default.createElement(
+	              'h6',
+	              null,
+	              'Standard \'$0.00\''
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return ItemCheckout;
+	}(_react2.default.Component);
+
+	exports.default = ItemCheckout;
 
 /***/ },
-/* 316 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(286)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "hr {\n  display: block;\n  height: 1px;\n  border: 0;\n  border-top: 1px solid #ccc;\n  width: 100%;\n}\n\n.backColor {\n  background-color: #FAFAFA;\n}\n\n.maincontainer {\n  background-color: #EEEEEE;\n  height: 125vh;\n  width: 70%;\n  margin-left: 15%;\n  margin-right: 15%;\n}\n\n.checkoutText {\n  background-color: #FFFFFF;\n  height: 15vh;\n}\n\n.items {\n  background-color: #FFFFFF;\n  height: 15vh;\n  width: 50%;\n  margin-top: 4%;\n  margin-left: 10%;\n\n}\n\n.shippingInfo {\n  background-color: #FFFFFF;\n  height: 35vh;\n  width: 50%;\n  margin-top: 2%;\n  margin-left: 10%;\n\n}\n\n.paymentInfo {\n  background-color: #FFFFFF;\n  height: 45vh;\n  width: 50%;\n  margin-top: 2%;\n  margin-left: 10%;\n}\n\n.cardInfo {\n  height: 6vh;\n}\n\n.promoCode {\n  height: 6vh;\n  width: 75%;\n  margin-left: 10%;\n}\n\n.promoInput {\n  width: 60%;\n}\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 317 */
+/* 319 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*! Hammer.JS - v2.0.7 - 2016-04-22
@@ -36237,46 +36399,6 @@
 
 
 /***/ },
-/* 318 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(319);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(287)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./preCheck.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./preCheck.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 319 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(286)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".outColor {\n  background-color: #FAFAFA;\n}\n\n.maincontain {\n  background-color: #EEEEEE;\n  height: 100vh;\n  width: 70%;\n  margin-left: 15%;\n  margin-right: 15%;\n}\n\n.yourcart {\n  background-color: #FFFFFF;\n  height: 15vh;\n}\n\n.productbox {\n  background-color: #FFFFFF;\n  height: 18vh;\n  width: 75%;\n  margin-top: 4%;\n  margin-left: 12.5%;\n  margin-right: 12.5%;\n}\n\n.line {\n  display: block;\n  height: 1px;\n  border: 0;\n  border-top: 1px solid #ccc;\n  width: 75%;\n  margin-top: 6%;\n  margin-left: 12.5%;\n  margin-right: 12.5%;\n}\n\n.subtotal {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  align-items: center;\n}\n\n\n\n.checkout {\n  text-align: center;\n  height: 9vh !important;\n  width: 80%;\n  background-color: #2979FF !important;\n  margin-top: 5%;\n  margin-left: 10%;\n  margin-right: 10%;\n}\n", ""]);
-
-	// exports
-
-
-/***/ },
 /* 320 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -36286,7 +36408,47 @@
 	var content = __webpack_require__(321);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(287)(content, {});
+	var update = __webpack_require__(285)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./checkout.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./checkout.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 321 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(284)();
+	// imports
+	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Roboto);", ""]);
+
+	// module
+	exports.push([module.id, "hr {\n  display: block;\n  height: 1px;\n  border: 0;\n  border-top: 1px solid #ccc;\n  width: 100%;\n}\n\n.backColor {\n  background-color: #FAFAFA;\n}\n\n.maincontainer {\n  background-color: #EEEEEE;\n  height: 125vh;\n  width: 70%;\n  margin-left: 15%;\n  margin-right: 15%;\n}\n\n.checkoutText {\n  background-color: #FFFFFF;\n  height: 15vh;\n  font-family: 'Roboto', sans-serif;\n  font-size: 30px;\n  margin-top: 1.5px;\n  text-indent: 80px;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: flex-start;\n}\n\n.items {\n  background-color: #FFFFFF;\n  height: 15vh;\n  width: 80%;\n  margin-top: 3%;\n  margin-left: 10%;\n  margin-right: 10%;\n}\n\n.checkTrash:hover {\n  cursor: pointer;\n}\n\n.shippingInfo {\n  background-color: #FFFFFF;\n  height: 35vh;\n  width: 80%;\n  margin-top: 3%;\n  margin-left: 10%;\n  margin-right: 10%;\n\n}\n\n.paymentInfo {\n  background-color: #FFFFFF;\n  height: 35vh;\n  width: 80%;\n  margin-top: 3%;\n  margin-left: 10%;\n  margin-right: 10%;\n}\n\n.cardInfo {\n  height: 6vh;\n}\n\n.promoCode {\n  height: 6vh;\n  width: 75%;\n  margin-left: 10%;\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n}\n\n.promoInput {\n  width: 60%;\n}\n\n\n\n.confirmPurchase {\n  background-color: #2979FF !important;\n  margin-left: 58%;\n  margin-top: 9%;\n  height: 57px;\n  word-wrap: break-word;\n}\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 322 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(323);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(285)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -36303,91 +36465,18 @@
 	}
 
 /***/ },
-/* 321 */
+/* 323 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(286)();
+	exports = module.exports = __webpack_require__(284)();
 	// imports
-
+	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Roboto);", ""]);
 
 	// module
-	exports.push([module.id, ".product {\n  background-color: #EEEEEE;\n  background-repeat: no-repeat;\n  margin-left: 15%;\n  margin-right: 15%;\n  margin-bottom: 20px;\n  height:100vh;\n  width: 70%;\n}\n\n@media only screen and (max-width: 500px){\n  .product {\n    width: 100%;\n    margin-left: 0;\n    margin-right: 0;\n  }\n}\n", ""]);
+	exports.push([module.id, ".product {\n  background-color: #EEEEEE;\n  background-repeat: no-repeat;\n  margin-left: 15%;\n  margin-right: 15%;\n  height:100vh;\n  width: 70%;\n  /*border-bottom: .1px solid grey;*/\n  margin-bottom: 10px;\n}\n\n.homeName,\n.homeDescription,\n.homePrice {\n  font-family: 'Roboto', sans-serif;\n}\n\n.homeName {\n  font-size: 40px;\n  margin-left: 45px;\n}\n\n.homeDescription {\n  font-size: 15px;\n  word-wrap: break-word;\n  margin-left: 45px;\n  width: 30%;\n\n\n}\n\n.homePrice {\n  font-size: 15px;\n  margin-left: 45px;\n  margin-top: 10px;\n}\n\n.homeButton {\n  background-color: #2979FF !important;\n  margin-left: 45px;\n   margin-top: 15px;\n}\n\n@media only screen and (max-width: 500px){\n  .product {\n    width: 100%;\n    margin-left: 0;\n    margin-right: 0;\n  }\n}\n", ""]);
 
 	// exports
 
-
-/***/ },
-/* 322 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactRouter = __webpack_require__(179);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var CartItem = function (_React$Component) {
-	  _inherits(CartItem, _React$Component);
-
-	  function CartItem() {
-	    _classCallCheck(this, CartItem);
-
-	    return _possibleConstructorReturn(this, (CartItem.__proto__ || Object.getPrototypeOf(CartItem)).apply(this, arguments));
-	  }
-
-	  _createClass(CartItem, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'product', style: {
-	            background: 'url(' + this.props.image + ') no-repeat center #eeeeee'
-	          } },
-	        _react2.default.createElement(
-	          'div',
-	          null,
-	          this.props.name
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          null,
-	          this.props.description
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          null,
-	          '$',
-	          this.props.price
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          null,
-	          this.props.quantity
-	        )
-	      );
-	    }
-	  }]);
-
-	  return CartItem;
-	}(_react2.default.Component);
-
-	exports.default = CartItem;
 
 /***/ }
 /******/ ]);

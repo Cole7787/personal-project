@@ -9,7 +9,7 @@ import * as $ from 'jquery';
 import hammerjs from 'hammerjs';
 import './styles/main.css';
 import './styles/checkout.css';
-import './styles/preCheck.css';
+import './styles/cartItem.css';
 import './components/Product/Product.css';
 // require("./stylesheet.css");
 

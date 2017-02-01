@@ -1,11 +1,48 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+
+
 .product {
   background-color: #EEEEEE;
   background-repeat: no-repeat;
   margin-left: 15%;
   margin-right: 15%;
-  margin-bottom: 20px;
   height:100vh;
   width: 70%;
+  /*border-bottom: .1px solid grey;*/
+  margin-bottom: 10px;
+}
+
+.homeName,
+.homeDescription,
+.homePrice {
+  font-family: 'Roboto', sans-serif;
+}
+
+.homeName {
+  font-size: 40px;
+  margin-left: 45px;
+}
+
+.homeDescription {
+  font-size: 15px;
+  word-wrap: break-word;
+  margin-left: 45px;
+  width: 30%;
+
+
+}
+
+.homePrice {
+  font-size: 15px;
+  margin-left: 45px;
+  margin-top: 10px;
+}
+
+.homeButton {
+  background-color: #2979FF !important;
+  margin-left: 45px;
+   margin-top: 15px;
 }
 
 @media only screen and (max-width: 500px){

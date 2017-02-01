@@ -1,5 +1,6 @@
 import React from 'react';
 import Nav from './Nav';
+import '../styles/main.css'
 
 class Main extends React.Component{
 
@@ -14,8 +15,9 @@ updateCartID (newId){
   this.setState({cartId:newId})
 }
   render(){
+    console.log(this.state);
     return(
-      <div>
+      <div className='main'>
       <Nav />
       {React.cloneElement(this.props.children, {updateCartID:this.updateCartID.bind(this), cartId: this.state.cartId })}
       </div>
@@ -24,4 +26,3 @@ updateCartID (newId){
 }
 
 export default Main;
-// {this.renderProducts()}
