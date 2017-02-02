@@ -1,2 +1,2 @@
-insert into cartItem(productId, quantity, cartId)
+insert into cart(userId, productId, qty)
   values($1, $2, $3);

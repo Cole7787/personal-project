@@ -4,16 +4,16 @@ const db = app.get('db');
 module.exports = {
   create: (req, res)=>{
     console.log(req.body);
-    const { cartId, productId, quantity } = req.body;
+    const { userId, productId, quantity } = req.body;
     console.log();
-    db.create_item([productId, quantity, cartId[0].id], (err)=>{
+    db.create_item([productId, quantity, userId], (err)=>{
       if(err){
         console.log(err);
         res.reject(err);
         return;
       }
       else{
-        db.get_cart_items([cartId[0].id], (err, result)=>{
+        db.get_cart_items([userId], (err, result)=>{
           if(err){
             console.log(err);
           }
@@ -27,7 +27,7 @@ module.exports = {
   },
 
   update: (req, res)=>{
-    db.update_cart_item([cartId, quantity], (err, result)=>{
+    db.update_cart_item([req.body], (err, result)=>{
       if(err){
         console.log(err);
       }

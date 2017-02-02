@@ -25,57 +25,58 @@
 
 .productbox {
   background-color: #FFFFFF;
-  height: 18vh;
+  height: 20vh;
   width: 75%;
   margin-top: 4%;
   margin-left: 12.5%;
   margin-right: 12.5%;
+  display: flex;
+  justify-content: space-between;
 
 }
 
 .productImg {
-  width: 125px;
+  width: 150px;
+  background: center no-repeat;
+  margin-bottom: 25px;
+  margin-left: 15px;
+}
+
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-right: 30px;
 }
 
 .productTitle {
   font-family: 'Roboto', sans-serif;
-  font-size: 20px;
-
+  font-size: 28px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-right: 50px;
 }
 
 .productPrice,
 .quantity,
 .trash {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-right: 30px;
-  margin-bottom: 20px;
   font-family: 'Roboto', sans-serif;
 }
 
 .productPrice {
   font-size: 15px;
-  height: 2vh;
 }
 
-.quantity {
-  font-size: 13px;
-  height: 2vh;
-}
+/*.dropQuant {
+background-color: #2979FF !important;
 
-.trash {
-  height: 3vh;
-}
+}*/
 
 .trash:hover {
  cursor: pointer;
-
 }
 
 
@@ -91,6 +92,8 @@
 }
 
 .subtotal {
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -100,7 +103,8 @@
 .tax {
   font-family: 'Roboto', sans-serif;
   font-size: 15px;
-  text-indent: 74px;
+  margin-left: 10%;
+  margin-top: 13px;
 }
 
 

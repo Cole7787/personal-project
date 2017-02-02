@@ -33,6 +33,7 @@ class Checkout extends React.Component{
               return(<ItemCheckout
                 key={index}
                 name={val.name}
+                image={val.imageurl}
                 price={val.price}
                 quantity={val.quantity}/>)
             })
@@ -46,18 +47,17 @@ class Checkout extends React.Component{
 
             {this.renderCheckoutItem()}
             <div className="paymentInfo">
-              <div className="cardInfo">Visa ***5555</div>
-              <hr className="firstLine"></hr>
+              
               <div className="promoCode">
-                <i className="material-icons">local_offer</i>
+                <i className="material-icons tag">local_offer</i>
               <input className="promoInput" placeholder="Add a promo code"></input>
               </div>
               <hr className="secondLine"></hr>
 
 
-                <div>Total Price: ${this.state.subtotal}.00</div>
-
+                <div className="total">Total Price: ${this.state.subtotal}.00</div>
                 <Button waves="light" className="confirmPurchase">Confirm Purchase</Button>
+
             </div>
           </div>
           )

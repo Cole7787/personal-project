@@ -1,5 +1,5 @@
 select *
 from cart
-inner join cartItem on cart.id = cartItem.cartId
-inner join product on cartItem.productId = product.id
-where cart.id = $1;
+join product on cart.productId = product.id
+where userId = $1
+order by cart.id;

@@ -4,7 +4,7 @@ const db = app.get('db');
 
 module.exports = {
   show: (req, res)=>{
-    db.get_cart_items([req.params.cartId], (err, result)=>{
+    db.get_cart_items([req.params.userId], (err, result)=>{
       if(err){
         console.log(err);
       }
@@ -15,23 +15,48 @@ module.exports = {
   },
 
   create: (req, res, next)=>{
+    db.get_current_cart([req.body.productId], (err, products)=>{
+      if(err){
+        res.status(500).json(err);
+      }
+      else if(!products.length){
+        var initial = 1
+        db.create_item([req.body.userId,  req.body.productId, initial], (err, success)=>{
+          if(err){
+            console.log(err);
+            res.status(500).json(err)
+          }
+          else {
+            res.status(200).json('item created!')
+          }
+        })
+      }
+      else{
+        console.log(req.body);
+        db.add_quantity([req.body.productId], (err, success)=>{
 
-    //check if cart exists, if it does, continue to create item
-    if (req.body.cartId) {
-      next();
-      return;
-    }
+          if(err){
+            console.log(err);
+            res.status(500).json(err)
+          }
+          else{
+            res.status(200).json('already in cart added 1 to quantity')
+          }
+        })
+      }
+    })
+  },
 
-    db.create_cart([1], (err, result)=>{
+  update: (req, res)=>{
+
+    db.update_quantity([req.params.productId, req.body.qty], (err, result)=>{
       if(err){
         console.log(err);
       }
       else{
-        req.body.cartId = result;
-        next();
-        return;
+        res.send('updated');
       }
-    });
+    })
   },
 
   destroy: (req, res)=>{

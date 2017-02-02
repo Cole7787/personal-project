@@ -1,3 +1,3 @@
-select * from cartItem
+update cartItem
 where id = $1
-set (quantity) values ($2)
+set (qty) values ($2)

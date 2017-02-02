@@ -10,9 +10,9 @@ constructor(props){
 }
 
 addToCart(){
-  axios.post('/api/cart', {cartId:this.props.cartId, productId: this.props.productId,quantity:1})
+  axios.post('/api/cart', {userId:1, productId: this.props.productId})
   .then(result => {
-    this.props.update(result.data[0].cartid);
+    this.props.update(result.data[0].userId);
     browserHistory.push('precheck');
   })
 }

@@ -10,12 +10,14 @@ class ItemCheckout extends React.Component{
 
       <div className="">
         <div className="items">
-          <div className="checkImg">{this.props.imageurl}</div>
+          <img className="checkImg" src={this.props.image} />
           <div className="checkTitle">{this.props.name}</div>
-          <div className="checkPrice">Price: ${this.props.price}.00</div>
-          <div className="checkQuantity">Quantity: {this.props.quantity}</div>
-          <div className="checkTrash"><i className="material-icons">delete</i></div>
+          <div className="productContain">
+            <div className="checkPrice">${this.props.price}.00</div>
+            <div className="checkQuantity">Quantity: {this.props.quantity}</div>
+            <div className="checkTrash"><i className="material-icons">delete</i></div>
         </div>
+      </div>
 
         <div className="shippingInfo">
           <h6>Choose shipping address</h6>
