@@ -5,7 +5,6 @@ import {Button, Dropdown, NavItem} from 'react-materialize';
 class CartItem extends React.Component {
   constructor(props){
     super(props);
-
   }
   Clicked = (e) => {
     let price = this.props.price
@@ -13,9 +12,11 @@ class CartItem extends React.Component {
     this.props.increaseQty(this.props.itemId, e.target.value);
   }
 
-  render(){
+  handleDelete = () =>{
+    this.props.delete(this.props.itemId)
+  }
 
-    console.log('this is the image', this.props.image);
+  render(){
     return(
         <div className="">
           <div className="productbox">
@@ -26,7 +27,7 @@ class CartItem extends React.Component {
               <div className="quantityContain">
                 <input type="number" id='qty' value={this.props.qty} onChange={this.Clicked}></input>
               </div>
-            <div className="trash"><i className="material-icons">delete</i></div>
+            <div className="trash" onClick={this.handleDelete}><i className="material-icons">delete</i></div>
           </div>
         </div>
       </div>

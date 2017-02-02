@@ -24,8 +24,7 @@ app.get('/api/product', product_control.index);
 app.get('/api/cart/:userId', cart_control.show);
 app.post('/api/cart', cart_control.create);
 app.put('/api/cart/:productId', cart_control.update);
-// app.put('/api/cart/:productId', item_control.update);
-// app.delete('/api/cart/:productId', item_control.destroy);
+app.delete('/api/cart/:productId', cart_control.destroy);
 
 
 app.get('*', (req,res) => {

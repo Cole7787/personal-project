@@ -60,7 +60,7 @@ module.exports = {
   },
 
   destroy: (req, res)=>{
-    db.delete_product([req.params.cartId], (err, result)=>{
+    db.delete_product([req.params.productId], (err, result)=>{
       if(err){
         console.log(err);
       }

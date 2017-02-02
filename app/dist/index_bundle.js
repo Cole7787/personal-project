@@ -33273,11 +33273,19 @@
 	    var _this = _possibleConstructorReturn(this, (PreCheckout.__proto__ || Object.getPrototypeOf(PreCheckout)).call(this, props));
 
 	    _this.increaseQty = function (id, qty) {
-
 	      (0, _axios2.default)({
 	        method: 'PUT',
 	        url: '/api/cart/' + id,
 	        data: { qty: Number(qty) }
+	      }).then(function (r) {
+	        _this.getData();
+	      });
+	    };
+
+	    _this.clickedDelete = function (id) {
+	      (0, _axios2.default)({
+	        method: 'DELETE',
+	        url: 'api/cart/' + id
 	      }).then(function (r) {
 	        _this.getData();
 	      });
@@ -33340,7 +33348,8 @@
 	            price: val.price,
 	            qty: val.qty,
 	            subtotal: val.subTotal,
-	            increaseQty: _this3.increaseQty });
+	            increaseQty: _this3.increaseQty,
+	            'delete': _this3.clickedDelete });
 	        });
 	      }
 	    }
@@ -33378,6 +33387,15 @@
 	          'div',
 	          { className: 'tax' },
 	          'Tax and shipping will be calculated at checkout.'
+	        ),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/' },
+	          _react2.default.createElement(
+	            'a',
+	            { className: 'goHome' },
+	            'Continue Shopping'
+	          )
 	        ),
 	        _react2.default.createElement(
 	          _reactRouter.Link,
@@ -33440,7 +33458,7 @@
 	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Roboto);", ""]);
 
 	// module
-	exports.push([module.id, ".maincontain {\n  background-color: #EEEEEE;\n  height: 100%;\n  min-height:100vh;\n  width: 70%;\n  margin-left: 15%;\n  margin-right: 15%;\n}\n\n.yourcart {\n  background-color: #FFFFFF;\n  height: 15vh;\n  font-family: 'Roboto', sans-serif;\n  font-size: 30px;\n  margin-top: 1.5px;\n  text-indent: 80px;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: flex-start;\n}\n\n.productbox {\n  background-color: #FFFFFF;\n  height: 20vh;\n  width: 75%;\n  margin-top: 4%;\n  margin-left: 12.5%;\n  margin-right: 12.5%;\n  display: flex;\n  justify-content: space-between;\n\n}\n\n.productImg {\n  width: 150px;\n  background: center no-repeat;\n  margin-bottom: 25px;\n  margin-left: 15px;\n}\n\n.productInfo {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-around;\n  align-items: center;\n  margin-right: 30px;\n}\n\n.productTitle {\n  font-family: 'Roboto', sans-serif;\n  font-size: 28px;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  margin-right: 50px;\n}\n\n.productPrice,\n.quantity,\n.trash {\n  font-family: 'Roboto', sans-serif;\n}\n\n.productPrice {\n  font-size: 15px;\n}\n\n/*.dropQuant {\nbackground-color: #2979FF !important;\n\n}*/\n\n.trash:hover {\n cursor: pointer;\n}\n\n\n.line {\n  display: block;\n  height: 1px;\n  border: 0;\n  border-top: 1px solid #ccc;\n  width: 75%;\n  margin-top: 6%;\n  margin-left: 12.5%;\n  margin-right: 12.5%;\n}\n\n.subtotal {\n  font-family: 'Roboto', sans-serif;\n  font-size: 15px;\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  align-items: center;\n}\n\n.tax {\n  font-family: 'Roboto', sans-serif;\n  font-size: 15px;\n  margin-left: 10%;\n  margin-top: 13px;\n}\n\n\n.checkout {\n  text-align: center;\n  height: 9vh !important;\n  width: 80%;\n  background-color: #2979FF !important;\n  margin-top: 5%;\n  margin-left: 10%;\n  margin-right: 10%;\n}\n", ""]);
+	exports.push([module.id, ".maincontain {\n  background-color: #EEEEEE;\n  height: 100%;\n  min-height:125vh;\n  width: 70%;\n  margin-left: 15%;\n  margin-right: 15%;\n}\n\n.yourcart {\n  background-color: #FFFFFF;\n  height: 15vh;\n  font-family: 'Roboto', sans-serif;\n  font-size: 30px;\n  margin-top: 1.5px;\n  text-indent: 80px;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: flex-start;\n}\n\n.productbox {\n  background-color: #FFFFFF;\n  height: 20vh;\n  width: 75%;\n  margin-top: 4%;\n  margin-left: 12.5%;\n  margin-right: 12.5%;\n  display: flex;\n  justify-content: space-between;\n\n}\n\n.productImg {\n  width: 150px;\n  background: center no-repeat;\n  margin-bottom: 25px;\n  margin-left: 15px;\n}\n\n.productInfo {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-around;\n  align-items: center;\n  margin-right: 30px;\n}\n\n.productTitle {\n  font-family: 'Roboto', sans-serif;\n  font-size: 28px;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  margin-right: 50px;\n}\n\n.productPrice,\n.quantity,\n.trash {\n  font-family: 'Roboto', sans-serif;\n}\n\n.productPrice {\n  font-size: 15px;\n}\n\n\n.trash:hover {\n cursor: pointer;\n}\n\n\n.line {\n  display: block;\n  height: 1px;\n  border: 0;\n  border-top: 1px solid #ccc;\n  width: 75%;\n  margin-top: 6%;\n  margin-left: 12.5%;\n  margin-right: 12.5%;\n}\n\n.subtotal {\n  font-family: 'Roboto', sans-serif;\n  font-size: 15px;\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  align-items: center;\n}\n\n.tax {\n  font-family: 'Roboto', sans-serif;\n  font-size: 15px;\n  margin-left: 10%;\n  margin-top: 13px;\n}\n\n.goHome {\n  font-family: 'Roboto', sans-serif;\n  font-size: 15px;\n  margin-left: 75%;\n}\n\n\n.checkout {\n  text-align: center;\n  height: 9vh !important;\n  width: 80%;\n  background-color: #2979FF !important;\n  margin-top: 5%;\n  margin-left: 10%;\n  margin-right: 10%;\n}\n", ""]);
 
 	// exports
 
@@ -33489,14 +33507,16 @@
 	      _this.props.increaseQty(_this.props.itemId, e.target.value);
 	    };
 
+	    _this.handleDelete = function () {
+	      _this.props.delete(_this.props.itemId);
+	    };
+
 	    return _this;
 	  }
 
 	  _createClass(CartItem, [{
 	    key: 'render',
 	    value: function render() {
-
-	      console.log('this is the image', this.props.image);
 	      return _react2.default.createElement(
 	        'div',
 	        { className: '' },
@@ -33526,7 +33546,7 @@
 	            ),
 	            _react2.default.createElement(
 	              'div',
-	              { className: 'trash' },
+	              { className: 'trash', onClick: this.handleDelete },
 	              _react2.default.createElement(
 	                'i',
 	                { className: 'material-icons' },

@@ -48,17 +48,25 @@ class PreCheckout extends React.Component{
   }
 
   increaseQty = (id, qty) => {
-
     axios({
       method: 'PUT',
       url: '/api/cart/' + id,
       data: {qty:Number(qty)}
     }).then(r => {
       this.getData()
-
     })
-
   }
+
+    clickedDelete = (id) =>{
+      axios({
+        method: 'DELETE',
+        url: 'api/cart/' + id
+      }).then(r =>{
+        this.getData();
+      })
+    }
+
+
 
   renderCartItem(){
     if(this.state.items.length){
@@ -72,7 +80,8 @@ class PreCheckout extends React.Component{
           price={val.price}
           qty={val.qty}
           subtotal={val.subTotal}
-          increaseQty={this.increaseQty}/>)
+          increaseQty={this.increaseQty}
+          delete={this.clickedDelete}/>)
       })
     }
   }
@@ -89,6 +98,9 @@ class PreCheckout extends React.Component{
           </div>
           <br/>
           <div className="tax">Tax and shipping will be calculated at checkout.</div>
+          <Link to="/">
+            <a className="goHome">Continue Shopping</a>
+          </Link>
           <Link to='checkout'>
             <Button waves='light' className="checkout"><i className="material-icons">shopping_cart</i>{' '}Check out</Button>
           </Link>
