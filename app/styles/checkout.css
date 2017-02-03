@@ -58,15 +58,26 @@ hr {
   margin-left: 15px;
 }
 
-.checkTitle {
-  font-family: 'Roboto', sans-serif;
-  font-size: 28px;
+.checkNameQty {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-right: 50px;
 }
+
+.checkTitle {
+  font-family: 'Roboto', sans-serif;
+  font-size: 28px;
+  margin-right: 45px;
+}
+
+.checkQuantity {
+  font-family: 'Robot', sans-serif;
+  font-size: 15px;
+  color: grey;
+  margin-right: 45px;
+}
+
 
 .productContain {
   display: flex;
@@ -78,11 +89,10 @@ hr {
 
 .checkPrice {
   font-size: 15px;
+  margin-bottom: 10px;
 }
 
-.checkQuantity {
-  text-align: center;
-}
+
 
 .checkTrash:hover {
   cursor: pointer;

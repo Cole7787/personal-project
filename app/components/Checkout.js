@@ -36,35 +36,35 @@ class Checkout extends React.Component{
           this.getData();
         }
 
-        updateSubtotal() {
-          let total = this.state.items.reduce((a,item)=>{
-            item.subTotal = item.qty * item.price
-            return a+item.subTotal;
-          },0)
-          this.setState({
-            total
-          })
-        }
-
-        increaseQty = (id, qty) => {
-          axios({
-            method: 'PUT',
-            url: '/api/cart/' + id,
-            data: {qty:Number(qty)}
-          }).then(r => {
-            this.getData()
-          })
-        }
-
-
-        clickedDelete = (id) =>{
-          axios({
-            method: 'DELETE',
-            url: 'api/cart/' + id
-          }).then(r =>{
-            this.getData();
-          })
-        }
+        // updateSubtotal() {
+        //   let total = this.state.items.reduce((a,item)=>{
+        //     item.subTotal = item.qty * item.price
+        //     return a+item.subTotal;
+        //   },0)
+        //   this.setState({
+        //     total
+        //   })
+        // }
+        //
+        // increaseQty = (id, qty) => {
+        //   axios({
+        //     method: 'PUT',
+        //     url: '/api/cart/' + id,
+        //     data: {qty:Number(qty)}
+        //   }).then(r => {
+        //     this.getData()
+        //   })
+        // }
+        //
+        //
+        // clickedDelete = (id) =>{
+        //   axios({
+        //     method: 'DELETE',
+        //     url: 'api/cart/' + id
+        //   }).then(r =>{
+        //     this.getData();
+        //   })
+        // }
 
         renderCheckoutItem(){
           if(this.state.items.length){
