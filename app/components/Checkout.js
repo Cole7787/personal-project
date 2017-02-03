@@ -5,6 +5,7 @@ import {Button} from 'react-materialize';
 import axios from 'axios';
 import '../styles/checkout.css';
 let userId = 1;
+import swal from '../sweetalert.min.js';
 
 
 class Checkout extends React.Component{
@@ -36,35 +37,9 @@ class Checkout extends React.Component{
           this.getData();
         }
 
-        // updateSubtotal() {
-        //   let total = this.state.items.reduce((a,item)=>{
-        //     item.subTotal = item.qty * item.price
-        //     return a+item.subTotal;
-        //   },0)
-        //   this.setState({
-        //     total
-        //   })
-        // }
-        //
-        // increaseQty = (id, qty) => {
-        //   axios({
-        //     method: 'PUT',
-        //     url: '/api/cart/' + id,
-        //     data: {qty:Number(qty)}
-        //   }).then(r => {
-        //     this.getData()
-        //   })
-        // }
-        //
-        //
-        // clickedDelete = (id) =>{
-        //   axios({
-        //     method: 'DELETE',
-        //     url: 'api/cart/' + id
-        //   }).then(r =>{
-        //     this.getData();
-        //   })
-        // }
+        sweet(){
+          swal("Success!", "Your order has been placed", "success");
+        }
 
         renderCheckoutItem(){
           if(this.state.items.length){
@@ -104,7 +79,7 @@ class Checkout extends React.Component{
                 <input className="ccv" placeholder="CCV"></input>
 
                 <div className="total">Total Price: ${this.state.total}.00</div>
-                <Button waves="light" className="confirmPurchase">Confirm Purchase</Button>
+                <Button waves="light" className="confirmPurchase" onClick={this.sweet} type="submit" name="action">Confirm Purchase</Button>
 
             </div>
           </div>
