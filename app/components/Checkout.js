@@ -4,7 +4,6 @@ import ItemCheckout from './ItemCheckout.js';
 import {Button} from 'react-materialize';
 import axios from 'axios';
 import '../styles/checkout.css';
-
 let userId = 1;
 
 
@@ -18,7 +17,8 @@ class Checkout extends React.Component{
             total: 0
           }
         }
-        componentDidMount(){
+
+        getData(){
           axios.get(`/api/cart/${userId}`)
           .then(response =>{
             let total = response.data.reduce((a,item)=>{
@@ -32,16 +32,53 @@ class Checkout extends React.Component{
           })
         }
 
+        componentDidMount(){
+          this.getData();
+        }
+
+        updateSubtotal() {
+          let total = this.state.items.reduce((a,item)=>{
+            item.subTotal = item.qty * item.price
+            return a+item.subTotal;
+          },0)
+          this.setState({
+            total
+          })
+        }
+
+        increaseQty = (id, qty) => {
+          axios({
+            method: 'PUT',
+            url: '/api/cart/' + id,
+            data: {qty:Number(qty)}
+          }).then(r => {
+            this.getData()
+          })
+        }
+
+
+        clickedDelete = (id) =>{
+          axios({
+            method: 'DELETE',
+            url: 'api/cart/' + id
+          }).then(r =>{
+            this.getData();
+          })
+        }
+
         renderCheckoutItem(){
           if(this.state.items.length){
             return this.state.items.map((cart, index)=>{
               return(<ItemCheckout
                 key={index}
+                itemId={cart.id}
                 name={cart.name}
                 image={cart.imageurl}
                 price={cart.price}
                 subtotal={cart.subTotal}
-                qty={cart.qty}/>)
+                qty={cart.qty}
+                increaseQty={this.increaseQty}
+                delete={this.clickedDelete}/>)
             })
           }
         }
@@ -66,7 +103,7 @@ class Checkout extends React.Component{
                 <input className="expDate" placeholder="Expiration Date:  MM/YY"></input>
                 <input className="ccv" placeholder="CCV"></input>
 
-                <div className="total">Total Price: ${this.state.subtotal}.00</div>
+                <div className="total">Total Price: ${this.state.total}.00</div>
                 <Button waves="light" className="confirmPurchase">Confirm Purchase</Button>
 
             </div>

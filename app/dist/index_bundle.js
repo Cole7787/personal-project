@@ -33612,6 +33612,25 @@
 
 	    var _this = _possibleConstructorReturn(this, (Checkout.__proto__ || Object.getPrototypeOf(Checkout)).call(this, props));
 
+	    _this.increaseQty = function (id, qty) {
+	      (0, _axios2.default)({
+	        method: 'PUT',
+	        url: '/api/cart/' + id,
+	        data: { qty: Number(qty) }
+	      }).then(function (r) {
+	        _this.getData();
+	      });
+	    };
+
+	    _this.clickedDelete = function (id) {
+	      (0, _axios2.default)({
+	        method: 'DELETE',
+	        url: 'api/cart/' + id
+	      }).then(function (r) {
+	        _this.getData();
+	      });
+	    };
+
 	    _this.state = {
 	      items: [],
 	      subtotal: 0,
@@ -33621,8 +33640,8 @@
 	  }
 
 	  _createClass(Checkout, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
+	    key: 'getData',
+	    value: function getData() {
 	      var _this2 = this;
 
 	      _axios2.default.get('/api/cart/' + userId).then(function (response) {
@@ -33637,17 +33656,38 @@
 	      });
 	    }
 	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.getData();
+	    }
+	  }, {
+	    key: 'updateSubtotal',
+	    value: function updateSubtotal() {
+	      var total = this.state.items.reduce(function (a, item) {
+	        item.subTotal = item.qty * item.price;
+	        return a + item.subTotal;
+	      }, 0);
+	      this.setState({
+	        total: total
+	      });
+	    }
+	  }, {
 	    key: 'renderCheckoutItem',
 	    value: function renderCheckoutItem() {
+	      var _this3 = this;
+
 	      if (this.state.items.length) {
 	        return this.state.items.map(function (cart, index) {
 	          return _react2.default.createElement(_ItemCheckout2.default, {
 	            key: index,
+	            itemId: cart.id,
 	            name: cart.name,
 	            image: cart.imageurl,
 	            price: cart.price,
 	            subtotal: cart.subTotal,
-	            qty: cart.qty });
+	            qty: cart.qty,
+	            increaseQty: _this3.increaseQty,
+	            'delete': _this3.clickedDelete });
 	        });
 	      }
 	    }
@@ -33693,7 +33733,7 @@
 	            'div',
 	            { className: 'total' },
 	            'Total Price: $',
-	            this.state.subtotal,
+	            this.state.total,
 	            '.00'
 	          ),
 	          _react2.default.createElement(
@@ -33746,10 +33786,22 @@
 	var ItemCheckout = function (_React$Component) {
 	  _inherits(ItemCheckout, _React$Component);
 
-	  function ItemCheckout() {
+	  function ItemCheckout(props) {
 	    _classCallCheck(this, ItemCheckout);
 
-	    return _possibleConstructorReturn(this, (ItemCheckout.__proto__ || Object.getPrototypeOf(ItemCheckout)).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, (ItemCheckout.__proto__ || Object.getPrototypeOf(ItemCheckout)).call(this, props));
+
+	    _this.Clicked = function (e) {
+	      var price = _this.props.price;
+	      console.log(e.target.value, 'this is the target value');
+	      _this.props.increaseQty(_this.props.itemId, e.target.value);
+	    };
+
+	    _this.handleDelete = function () {
+	      _this.props.delete(_this.props.itemId);
+	    };
+
+	    return _this;
 	  }
 
 	  _createClass(ItemCheckout, [{
@@ -33774,17 +33826,13 @@
 	              'div',
 	              { className: 'checkPrice' },
 	              '$',
-	              this.props.price,
+	              this.props.subtotal,
 	              '.00'
 	            ),
+	            _react2.default.createElement('input', { type: 'number', id: 'qty', className: 'checkQuantity', value: this.props.qty, onChange: this.Clicked }),
 	            _react2.default.createElement(
 	              'div',
-	              { className: 'checkQuantity' },
-	              this.props.qty
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'checkTrash' },
+	              { className: 'checkTrash', onClick: this.handleDelete },
 	              _react2.default.createElement(
 	                'i',
 	                { className: 'material-icons' },
@@ -33837,7 +33885,7 @@
 	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Roboto);", ""]);
 
 	// module
-	exports.push([module.id, "hr {\n  display: block;\n  height: 1px;\n  border: 0;\n  border-top: 1px solid #ccc;\n  width: 100%;\n}\n\n.backColor {\n  background-color: #FAFAFA;\n}\n\n.maincontainer {\n  background-color: #EEEEEE;\n  height: 135vh;\n  width: 70%;\n  margin-left: 15%;\n  margin-right: 15%;\n}\n\n.checkoutText {\n  background-color: #FFFFFF;\n  height: 15vh;\n  font-family: 'Roboto', sans-serif;\n  font-size: 30px;\n  margin-top: 1.5px;\n  text-indent: 80px;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: flex-start;\n}\n\n.items {\n  background-color: #FFFFFF;\n  height: 20vh;\n  width: 75%;\n  margin-top: 3%;\n  margin-left: 12.5%;\n  margin-right: 12.5%;\n  display: flex;\n  justify-content: space-between;\n}\n\n.checkPrice,\n.checkQuantity,\n.checkTrash {\n  font-family: 'Roboto', sans-serif;\n}\n\n.checkImg {\n  width: 150px;\n  background: center no-repeat;\n  margin-bottom: 25px;\n  margin-left: 15px;\n}\n\n.checkTitle {\n  font-family: 'Roboto', sans-serif;\n  font-size: 28px;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  margin-right: 50px;\n}\n\n.productContain {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-around;\n  align-items: center;\n  margin-right: 30px;\n}\n\n.checkPrice {\n  font-size: 15px;\n}\n\n.checkQuantity {\n  font-size: 13px;\n}\n\n.checkTrash:hover {\n  cursor: pointer;\n}\n\n.shippingInfo {\n  background-color: #FFFFFF;\n  height: 42vh;\n  width: 75%;\n  margin-top: 3%;\n  margin-left: 12.5%;\n  margin-right: 12.5%;\n}\n\n.shipHeader {\n  font-family: 'Roboto', sans-serif;\n  font-size: 20px;\n  margin-left: 15px;\n  height: 5vh;\n  display: flex;\n  align-items: center;\n}\n\n.nameInput,\n.shippingAddress,\n.cityState,\n.country {\n  width: 40% !important;\n  height: 30%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  margin-left: 30% !important;\n}\n\n\n.paymentInfo {\n  background-color: #FFFFFF;\n  height: 45vh;\n  width: 75%;\n  margin-top: 3%;\n  margin-left: 12.5%;\n  margin-right: 12.5%;\n  margin-bottom: 3%;\n}\n\n.paymentHeader {\n  font-family: 'Roboto', sans-serif;\n  font-size: 20px !important;\n  margin-left: 15px;\n  height: 5vh;\n  display: flex;\n  align-items: center;\n  /*margin-bottom: 5% !important;*/\n}\n\n.cardNumber,\n.expDate,\n.ccv {\n  width: 30% !important;\n  display: flex;\n  flex-direction: column;\n  margin-left: 30% !important;\n}\n\n.total {\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-end;;\n  align-items: center;\n  margin-right: 30px;\n  margin-top: 20px;\n}\n\n.confirmPurchase {\n  background-color: #2979FF !important;\n  margin-left: 31%;\n  height: 45px;\n  word-wrap: break-word;\n}\n", ""]);
+	exports.push([module.id, "hr {\n  display: block;\n  height: 1px;\n  border: 0;\n  border-top: 1px solid #ccc;\n  width: 100%;\n}\n\n.backColor {\n  background-color: #FAFAFA;\n}\n\n.maincontainer {\n  background-color: #EEEEEE;\n  height: 135vh;\n  width: 70%;\n  margin-left: 15%;\n  margin-right: 15%;\n}\n\n.checkoutText {\n  background-color: #FFFFFF;\n  height: 15vh;\n  font-family: 'Roboto', sans-serif;\n  font-size: 30px;\n  margin-top: 1.5px;\n  text-indent: 80px;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: flex-start;\n}\n\n.items {\n  background-color: #FFFFFF;\n  height: 20vh;\n  width: 75%;\n  margin-top: 3%;\n  margin-left: 12.5%;\n  margin-right: 12.5%;\n  display: flex;\n  justify-content: space-between;\n}\n\n.checkPrice,\n.checkQuantity,\n.checkTrash {\n  font-family: 'Roboto', sans-serif;\n}\n\n.checkImg {\n  width: 150px;\n  background: center no-repeat;\n  margin-bottom: 25px;\n  margin-left: 15px;\n}\n\n.checkTitle {\n  font-family: 'Roboto', sans-serif;\n  font-size: 28px;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  margin-right: 50px;\n}\n\n.productContain {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-around;\n  align-items: center;\n  margin-right: 30px;\n}\n\n.checkPrice {\n  font-size: 15px;\n}\n\n.checkQuantity {\n  text-align: center;\n}\n\n.checkTrash:hover {\n  cursor: pointer;\n}\n\n.shippingInfo {\n  background-color: #FFFFFF;\n  height: 42vh;\n  width: 75%;\n  margin-top: 3%;\n  margin-left: 12.5%;\n  margin-right: 12.5%;\n}\n\n.shipHeader {\n  font-family: 'Roboto', sans-serif;\n  font-size: 20px;\n  margin-left: 15px;\n  height: 5vh;\n  display: flex;\n  align-items: center;\n}\n\n.nameInput,\n.shippingAddress,\n.cityState,\n.country {\n  width: 40% !important;\n  height: 30%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  margin-left: 30% !important;\n}\n\n\n.paymentInfo {\n  background-color: #FFFFFF;\n  height: 45vh;\n  width: 75%;\n  margin-top: 3%;\n  margin-left: 12.5%;\n  margin-right: 12.5%;\n  margin-bottom: 3%;\n}\n\n.paymentHeader {\n  font-family: 'Roboto', sans-serif;\n  font-size: 20px !important;\n  margin-left: 15px;\n  height: 5vh;\n  display: flex;\n  align-items: center;\n  /*margin-bottom: 5% !important;*/\n}\n\n.cardNumber,\n.expDate,\n.ccv {\n  width: 30% !important;\n  display: flex;\n  flex-direction: column;\n  margin-left: 30% !important;\n}\n\n.total {\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-end;;\n  align-items: center;\n  margin-right: 30px;\n  margin-top: 20px;\n}\n\n.confirmPurchase {\n  background-color: #2979FF !important;\n  margin-left: 31%;\n  height: 45px;\n  word-wrap: break-word;\n}\n", ""]);
 
 	// exports
 
