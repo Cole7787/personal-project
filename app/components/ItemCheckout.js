@@ -4,6 +4,7 @@ import '../styles/checkout.css';
 import {Button} from 'react-materialize';
 
 
+
 class ItemCheckout extends React.Component{
   render(){
     return (
@@ -14,7 +15,7 @@ class ItemCheckout extends React.Component{
           <div className="checkTitle">{this.props.name}</div>
           <div className="productContain">
             <div className="checkPrice">${this.props.price}.00</div>
-            <div className="checkQuantity">Quantity: {this.props.quantity}</div>
+            <div className="checkQuantity">{this.props.qty}</div>
             <div className="checkTrash"><i className="material-icons">delete</i></div>
         </div>
       </div>
@@ -26,12 +27,7 @@ class ItemCheckout extends React.Component{
             <h6>Standard '$0.00'</h6>
             </div>
           </div>
-
-
       </div>
-
-
-
 
     )
   }

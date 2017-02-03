@@ -36,7 +36,7 @@ hr {
 
 .items {
   background-color: #FFFFFF;
-  height: 15vh;
+  height: 20vh;
   width: 75%;
   margin-top: 3%;
   margin-left: 12.5%;
@@ -52,9 +52,10 @@ hr {
 }
 
 .checkImg {
-  width: 125px;
+  width: 150px;
   background: center no-repeat;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
+  margin-left: 15px;
 }
 
 .checkTitle {
