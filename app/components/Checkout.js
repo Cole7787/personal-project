@@ -3,6 +3,7 @@ import {Link} from 'react-router';
 import ItemCheckout from './ItemCheckout.js';
 import {Button} from 'react-materialize';
 import axios from 'axios';
+import '../styles/checkout.css';
 
 let userId = 1;
 
@@ -50,13 +51,20 @@ class Checkout extends React.Component{
             <div className="maincontain">
               <div className="checkoutText">Checkout</div>
               {this.renderCheckoutItem()}
-            <div className="paymentInfo">
-              <div className="promoCode">
-                <i className="material-icons tag">local_offer</i>
-              <input className="promoInput" placeholder="Add a promo code"></input>
+              <div className="shippingInfo">
+                <div className="shipHeader">Shipping Information</div>
+                  <hr className="secondLine"></hr>
+                <input className="nameInput" placeholder="Full Name"></input>
+                <input className="shippingAddress" placeholder="Street Address"></input>
+                <input className="cityState" placeholder="City, State, Zip Code"></input>
+                <input className="country" placeholder="Country"></input>
               </div>
-              <hr className="secondLine"></hr>
-
+            <div className="paymentInfo">
+                <div className="paymentHeader">Payment Information</div>
+                <hr className="secondLine"></hr>
+                <input className="cardNumber" placeholder="Card Number"></input>
+                <input className="expDate" placeholder="Expiration Date:  MM/YY"></input>
+                <input className="ccv" placeholder="CCV"></input>
 
                 <div className="total">Total Price: ${this.state.subtotal}.00</div>
                 <Button waves="light" className="confirmPurchase">Confirm Purchase</Button>

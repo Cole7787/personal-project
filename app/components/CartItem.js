@@ -25,7 +25,7 @@ class CartItem extends React.Component {
               <div className="productInfo">
               <div className="productPrice">${this.props.subtotal}.00</div>
               <div className="quantityContain">
-                <input type="number" id='qty' value={this.props.qty} onChange={this.Clicked}></input>
+                <input type="number" id='qty' className="inputQty" value={this.props.qty} onChange={this.Clicked}></input>
               </div>
             <div className="trash" onClick={this.handleDelete}><i className="material-icons">delete</i></div>
           </div>

@@ -61,9 +61,17 @@
 }
 
 .productPrice,
-.quantity,
+.inputQty,
 .trash {
   font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.inputQty {
+text-align: center;
 }
 
 .productPrice {

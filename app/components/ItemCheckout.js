@@ -20,13 +20,7 @@ class ItemCheckout extends React.Component{
         </div>
       </div>
 
-        <div className="shippingInfo">
-          <h6>Choose shipping address</h6>
-          <div className="shippingAddress"></div>
-          <div className="shippingMethod">
-            <h6>Standard '$0.00'</h6>
-            </div>
-          </div>
+        
       </div>
 
     )
