@@ -83,7 +83,7 @@
 
 	var $ = _interopRequireWildcard(_jquery);
 
-	var _hammerjs = __webpack_require__(321);
+	var _hammerjs = __webpack_require__(330);
 
 	var _hammerjs2 = _interopRequireDefault(_hammerjs);
 
@@ -93,7 +93,7 @@
 
 	__webpack_require__(314);
 
-	__webpack_require__(322);
+	__webpack_require__(331);
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -33594,7 +33594,7 @@
 
 	__webpack_require__(319);
 
-	var _sweetalertMin = __webpack_require__(324);
+	var _sweetalertMin = __webpack_require__(333);
 
 	var _sweetalertMin2 = _interopRequireDefault(_sweetalertMin);
 
@@ -33869,7 +33869,16 @@
 
 
 /***/ },
-/* 321 */
+/* 321 */,
+/* 322 */,
+/* 323 */,
+/* 324 */,
+/* 325 */,
+/* 326 */,
+/* 327 */,
+/* 328 */,
+/* 329 */,
+/* 330 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*! Hammer.JS - v2.0.7 - 2016-04-22
@@ -36518,13 +36527,13 @@
 
 
 /***/ },
-/* 322 */
+/* 331 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(323);
+	var content = __webpack_require__(332);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(285)(content, {});
@@ -36544,7 +36553,7 @@
 	}
 
 /***/ },
-/* 323 */
+/* 332 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(284)();
@@ -36558,7 +36567,7 @@
 
 
 /***/ },
-/* 324 */
+/* 333 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var require;var require;var __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
