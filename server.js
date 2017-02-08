@@ -10,7 +10,7 @@ const db = massive.connectSync({
 
 
 const app = module.exports = express();
-app.use(express.static(__dirname + '/dist'));
+app.use(express.static(__dirname + '/app'));
 app.use(bodyParser.json());
 app.set('db', db);
 
@@ -29,6 +29,6 @@ app.delete('/api/cart/:productId', cart_control.destroy);
 app.get('*', (req,res) => {
   res.sendFile(`${__dirname}/app/index.html`);
 });
-app.listen(80, ()=>{
+app.listen(8080, ()=>{
   console.log('App is listening on port 8080');
 });
