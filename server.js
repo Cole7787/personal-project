@@ -5,12 +5,12 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const massive = require('massive');
 const db = massive.connectSync({
-  connectionString: 'postgres://postgres@localhost/personal-project'
+  connectionString: 'postgres://postgres:@localhost/personal-project'
 });
 
 
 const app = module.exports = express();
-app.use(express.static(__dirname + '/app'));
+app.use(express.static(__dirname + '/dist'));
 app.use(bodyParser.json());
 app.set('db', db);
 
