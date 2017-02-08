@@ -71,6 +71,7 @@ class Checkout extends React.Component{
                 <input className="cityState" placeholder="City, State, Zip Code"></input>
                 <input className="country" placeholder="Country"></input>
               </div>
+              
             <div className="paymentInfo">
                 <div className="paymentHeader">Payment Information</div>
                 <hr className="secondLine"></hr>
@@ -80,7 +81,6 @@ class Checkout extends React.Component{
 
                 <div className="total">Total Price: ${this.state.total}.00</div>
                 <Button waves="light" className="confirmPurchase" onClick={this.sweet} type="submit" name="action">Confirm Purchase</Button>
-
             </div>
           </div>
           )

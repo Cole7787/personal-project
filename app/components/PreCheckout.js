@@ -66,12 +66,9 @@ class PreCheckout extends React.Component{
       })
     }
 
-
-
   renderCartItem(){
     if(this.state.items.length){
       return this.state.items.map((val, index)=>{
-
         return(<CartItem
           key={index}
           itemId={val.id}
