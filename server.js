@@ -5,7 +5,7 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const massive = require('massive');
 const db = massive.connectSync({
-  connectionString: 'postgres://postgres:postgres@localhost/personal-project'
+  connectionString: 'postgres://cole:Newpassword@localhost/personal-project'
 });
 
 
